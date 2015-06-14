@@ -8,15 +8,15 @@ var internals = {};
 
 internals.Request = function (options, request, reply) {
 
-	var route = this.route = request.route;
-	this.pluginOptions = options;
-	this.request = request;
-	this.reply = reply;
-	this.routeOptions = route.settings.plugins[internals.attributes.name];
-	this.origFailAction = route.settings.validate.failAction;
-	route.settings.validate.failAction = this.failAction.bind(this);
+    var route = this.route = request.route;
+    this.pluginOptions = options;
+    this.request = request;
+    this.reply = reply;
+    this.routeOptions = route.settings.plugins[internals.attributes.name];
+    this.origFailAction = route.settings.validate.failAction;
+    route.settings.validate.failAction = this.failAction.bind(this);
 
-	reply.continue();
+    reply.continue();
 };
 
 
@@ -66,15 +66,16 @@ internals.interpolate = exports.interpolate = function (str, context) {
 
 
 internals.getBestLanguageMatch = function (request, rules) {
-	return 'en';
+
+    return 'en';
 };
 
 
 internals.Request.prototype.doReplacements = function () {
 
-	var request = this.request;
-	var error = this.error;
-	var messages = this.messages;
+    var request = this.request;
+    var error = this.error;
+    var messages = this.messages;
     var details = error.data.details;
 
     for (var i = 0; i < details.length; i++) {
@@ -102,8 +103,8 @@ internals.Request.prototype.doReplacements = function () {
 
 internals.Request.prototype.wrapError = function () {
 
-	var err = this.error.data;
-	var source = this.source;
+    var err = this.error.data;
+    var source = this.source;
     var error = Boom.badRequest(err.details[0].message, err);
     error.output.payload.validation = { source: source, keys: [] };
     if (err.details) {
@@ -122,15 +123,15 @@ internals.onPostAuth = function (request, reply) {
 
 exports.register = function (server, options, next) {
 
-	var defaults = {
-		defaultLang: 'en'
-	};
+    var defaults = {
+        defaultLang: 'en'
+    };
 
-	server.ext('onPostAuth', internals.onPostAuth, {
-		bind: {
-			options: Hoek.applyToDefaults(defaults, options)
-		}
-	});
+    server.ext('onPostAuth', internals.onPostAuth, {
+        bind: {
+            options: Hoek.applyToDefaults(defaults, options)
+        }
+    });
 
     next();
 };
