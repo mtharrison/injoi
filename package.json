@@ -1,6 +1,6 @@
 {
-  "name": "joi18n",
-  "version": "1.0.0",
+  "name": "enjoi",
+  "version": "0.1.0",
   "description": "i18n plugin for Joi. Supports custom validation messages and internationalization (i18n).",
   "main": "index.js",
   "directories": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mtharrison/joi18n.git"
+    "url": "git+https://github.com/mtharrison/enjoi.git"
   },
   "keywords": [
     "joi",
@@ -21,7 +21,15 @@
   "author": "Matt Harrison",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mtharrison/joi18n/issues"
+    "url": "https://github.com/mtharrison/enjoi/issues"
   },
-  "homepage": "https://github.com/mtharrison/joi18n#readme"
+  "homepage": "https://github.com/mtharrison/enjoi#readme",
+  "devDependencies": {
+    "hapi": "^8.6.1",
+    "joi": "^6.4.3"
+  },
+  "dependencies": {
+    "boom": "^2.8.0",
+    "hoek": "^2.14.0"
+  }
 }
