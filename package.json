@@ -1,0 +1,27 @@
+{
+  "name": "joi18n",
+  "version": "1.0.0",
+  "description": "i18n plugin for Joi. Supports custom validation messages and internationalization (i18n).",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtharrison/joi18n.git"
+  },
+  "keywords": [
+    "joi",
+    "hapi",
+    "i18n"
+  ],
+  "author": "Matt Harrison",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mtharrison/joi18n/issues"
+  },
+  "homepage": "https://github.com/mtharrison/joi18n#readme"
+}
