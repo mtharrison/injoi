@@ -7,7 +7,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -t 100 -a code -L"
   },
   "repository": {
     "type": "git",
@@ -25,8 +25,10 @@
   },
   "homepage": "https://github.com/mtharrison/injoi#readme",
   "devDependencies": {
+    "code": "^1.4.0",
     "hapi": "^8.6.1",
-    "joi": "^6.4.3"
+    "joi": "^6.4.3",
+    "lab": "^5.10.0"
   },
   "dependencies": {
     "boom": "^2.8.0",
