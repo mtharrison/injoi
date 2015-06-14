@@ -18,7 +18,7 @@ server.route({
 			}
 		},
 		plugins: {
-			enjoi: {
+			injoi: {
 				params: {
 					perp: {
 						'string.regex.base': {

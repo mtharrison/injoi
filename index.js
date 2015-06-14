@@ -1,12 +1,16 @@
 var Boom = require('boom');
 var Hoek = require('hoek');
 
+
+var internals = {};
+
+
 exports.register = function (server, options, next) {
 
 	server.ext('onPostAuth', function (request, reply) {
 
 		var route = request.route;
-		var options = request.route.settings.plugins.enjoi;
+		var options = request.route.settings.plugins[internals.attributes.name];
 
 		var originalFailAction = route.settings.validate.failAction;
 
@@ -63,7 +67,7 @@ exports.register = function (server, options, next) {
 
 var Package = require('./package');
 
-exports.register.attributes = {
+exports.register.attributes = internals.attributes = {
 	name: Package.name,
 	version: Package.version
 };
