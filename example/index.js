@@ -4,36 +4,45 @@ var Joi = require('joi');
 var server = new Hapi.Server();
 server.connection({ port: 4000 });
 
+// The validate config is unchanged when using injoi
+
+var validateConfig = {
+    params: {
+        blame: Joi.string().regex(/moonlight|boogie|goodtimes/).required()
+    },
+    failAction: function (request, reply, source, error) {
+
+        reply(error.data.details);
+    }
+};
+
+// The additional injoi config specifies translations and custom messages for
+// each message type
+
+var injoiConfig = {
+    params: {
+        blame: {
+            'string.regex.base': {
+                en: 'Must be one of "moonlight", "boogie", "goodtimes"',
+                zh: '必定為其中之一 "moonlight" 或 "boogie", "goodtimes"'
+            },
+            'any.required': 'Forget something, like a {{key}}?'
+        }
+    }
+};
+
 server.route({
     config: {
-        validate: {
-            params: {
-                perp: Joi.string().regex(/moonlight|boogie/).required()
-            },
-            failAction: function (request, reply, source, error) {
-
-                reply(error.data.details);
-            }
-        },
+        validate: validateConfig,
         plugins: {
-            injoi: {
-                params: {
-                    perp: {
-                        'string.regex.base': {
-                            en: 'Must be one of "moonlight" or "boogie"',
-                            zh: '必定為其中之一 "moonlight" 或 "boogie"'
-                        },
-                        'any.required': 'Forget something, like a {{key}}?'
-                    }
-                }
-            }
+            injoi: injoiConfig
         }
     },
     method: 'GET',
-    path: '/blame/{perp?}',
+    path: '/blame/{blame?}',
     handler: function (request, reply) {
 
-        reply('Ok!');
+        reply('Ok, it worked!');
     }
 });
 
@@ -41,7 +50,7 @@ server.register([
     {
         register: require('../'),
         options: {
-            defaultLang: 'en'
+            defaultLang: 'zh'
         }
     }
 ], function (err) {
