@@ -503,6 +503,57 @@ describe('Injoi', function () {
     });
 
 
+    it('falls back to the default message if there are no rules for the default lang', function (done) {
+
+        var server = new Hapi.Server();
+        server.connection();
+
+        server.register(Injoi, function () {
+
+            server.route({
+                config: {
+                    validate: {
+                        params: {
+                            id: Joi.string().required().regex(/chicken/)
+                        }
+                    },
+                    plugins: {
+                        injoi: {
+                            params: {
+                                id: {
+                                    'string.regex.base': {
+                                        zh: '不好'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                method: 'GET',
+                path: '/{id}',
+                handler: function (request, reply) {
+
+                    reply('ok');
+                }
+            });
+
+            var options = {
+                method: 'GET',
+                url: '/10'
+            };
+
+            server.inject(options, function (res) {
+
+                expect(res.statusCode).to.equal(400);
+                var payload = JSON.parse(res.payload);
+                expect(payload.message).to.equal('"id" with value "10" fails to match the required pattern: /chicken/');
+                done();
+            });
+        });
+
+    });
+
+
     it('can override the default lang when registering', function (done) {
 
         var server = new Hapi.Server();
