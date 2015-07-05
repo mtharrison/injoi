@@ -399,6 +399,7 @@ describe('Injoi', function () {
 
     });
 
+
     it('passes the replaced error to failAction', function (done) {
 
         var server = new Hapi.Server();
