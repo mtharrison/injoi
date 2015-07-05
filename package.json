@@ -1,6 +1,6 @@
 {
   "name": "injoi",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "i18n plugin for Joi. Supports custom validation messages and internationalization (i18n).",
   "main": "index.js",
   "directories": {
