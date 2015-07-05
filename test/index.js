@@ -544,12 +544,12 @@ describe('Injoi', function () {
                 }
             });
 
-            var options = {
+            var injectOpts = {
                 method: 'GET',
                 url: '/10'
             };
 
-            server.inject(options, function (res) {
+            server.inject(injectOpts, function (res) {
 
                 expect(res.statusCode).to.equal(400);
                 var payload = JSON.parse(res.payload);
